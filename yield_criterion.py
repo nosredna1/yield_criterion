@@ -12,7 +12,7 @@ def stress_conv(stress, SI=True):
         Convert ksi to MPa if SI = True, vice versa if SI=False
     """
     if SI == True:
-        conv_stress = stresses * 6.89
+        conv_stress = stress * 6.89
     else:
         conv_stress = stress / 6.89
 
@@ -75,29 +75,13 @@ def coul_mohr(principal_stress, ultimate_tension, ultimate_compression):
     return design_factor
 
 if __name__ == "__main__":    
-    Sy = 303
+    Sy = 490
     
-    sigma_x = -100
-    sigma_y = -100
-    sigma_z = -100
-    t_xy = 60.6
+    sigma_x = -28.9
+    sigma_y = 0
+    sigma_z = 0
+    t_xy = 17.72
         
     prince = principal_stress(sigma_x, sigma_y, sigma_z, t_xy, 0, 0)
     
-    df_mss = mss(prince, Sy)
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+    df_vm = distort_energy(prince, Sy)
